@@ -9,7 +9,7 @@
   Example:
   ```
   PORT=3000
-  DATA_URI=your_mongodb_connection_uri
+  DATA_URI=mongodb+srv://[user]:[password]@[cluster].[instance].mongodb.net
   DATA_DB=your_database_name
   DATA_RESOURCES='["resource1", "resource2"]'
 
