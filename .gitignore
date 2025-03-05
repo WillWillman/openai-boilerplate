@@ -1,0 +1,7 @@
+node_modules
+yarn-error.log
+dist
+user_data
+.ds_store
+bundle.js
+.env

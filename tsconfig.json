@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "lib": [
+      "es2020",
+      "dom"
+    ],
+    "types": ["node"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "rootDir": ".",
+    "outDir": "temp",
+    "strict": false,
+    "declaration": true,
+    "sourceMap": true,
+    "inlineSources": true,
+    "stripInternal": true,
+    "incremental": true,
+    "skipLibCheck": true,
+    "allowJs": false,
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "Client-Config": ["src/client/Config"],
+      "Client-Routes": ["src/client/Routes"],
+      "Client-Store": ["src/client/Store"],
+      "Client-Utils": ["src/client/Utils"],
+    }
+  },
+  "exclude": ["node_modules"],
+  "include": [ "./src/**/*" ]
+}

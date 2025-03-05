@@ -1,0 +1,9 @@
+- Avoid 3rd party packages.
+- Use yarn.
+- Prefer modern JavaScript (e.g. Object.entries, .reduce).
+- For React, avoid inline {} and wrap elements in dedicated components.
+- Use single quotes.
+- Favor arrow functions.
+- Prefer one-liner functions without explicit 'return'.
+- Adopt a functional programming style.
+- Avoid unnecessary wrapping of functions in arrow functions.
