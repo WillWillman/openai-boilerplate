@@ -41,3 +41,9 @@
 ## 6. DATA_RESOURCES
 - Will create default CRUD routes as well as redux actions and reducers
 - There is a default `/` route that returns the [Home](./src/client/routes/Home/Home.tsx) component which can be used as an example route for prototyping (go [http://localhost:[port]](http://localhost:3000) to see the store thats generated printed out)
+
+## New from Template Extension
+https://marketplace.visualstudio.com/items?itemName=PolymerMallard.new-from-template
+
+Update or add Templates here:
+.vscode/templates/ReactComponent
