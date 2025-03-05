@@ -33,7 +33,7 @@
 ## 4. Run in Development Mode
 - `yarn dev`
     - The client will be built using `webpack.js` in watch mode.
-    - The server will use nodemon to watch for changes in the `src` folder.
+    - The server will use nodemon to watch for changes in the `src/service` directory.
 
 ## 5. Access the App
 - Once started, the server runs on [http://localhost:[port]](http://localhost:3000) (3000 by default)
