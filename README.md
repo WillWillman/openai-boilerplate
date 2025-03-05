@@ -43,7 +43,9 @@
 - There is a default `/` route that returns the [Home](./src/client/routes/Home/Home.tsx) component which can be used as an example route for prototyping (go [http://localhost:[port]](http://localhost:3000) to see the store thats generated printed out)
 
 ## New from Template Extension
-https://marketplace.visualstudio.com/items?itemName=PolymerMallard.new-from-template
+1. Install [extension](https://marketplace.visualstudio.com/items?itemName=PolymerMallard.new-from-template)
+1. Update or add Templates here: .vscode/templates
+1. Right click on directory where you want to add from template, select template, and fill out inputs
 
-Update or add Templates here:
-.vscode/templates/ReactComponent
+ReactComponent:
+Generates a component connected with all the state and actions from store and prints out a hello world and with all the props (including store)
