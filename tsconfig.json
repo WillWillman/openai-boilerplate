@@ -25,7 +25,9 @@
       "Client-Config": ["src/client/Config"],
       "Client-Routes": ["src/client/Routes"],
       "Client-Store": ["src/client/Store"],
-      "Client-Utils": ["src/client/Utils"],
+      "Client-Utils": ["src/client/Routes/Home/utils"],
+      "Service-Interfaces": ["src/service/interfaces"],
+      "Root-Config": ["src/config"],
     }
   },
   "exclude": ["node_modules"],

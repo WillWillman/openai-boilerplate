@@ -1,1 +1,9 @@
-export { Home } from './Home';
+import { Home } from './Home';
+
+export const Routes = [
+  {
+    key: 'home',
+    path: '/',
+    Component: Home,
+  },
+]

@@ -7,7 +7,13 @@ module.exports = {
     mode: 'development',
     plugins: [
         new webpack.DefinePlugin({
-            'process.env.DATA_RESOURCES': process.env.DATA_RESOURCES || []
+            // IMPORTANT! Do not put sensitive information here!
+            'process': {
+                env: {
+                    RESOURCES: process.env.RESOURCES,
+                    CLIENT_STORE_DEV_TOOLS: JSON.stringify(process.env.CLIENT_STORE_DEV_TOOLS || false),
+                }
+            },
         })
     ],
     entry: './src/client/index.tsx',
@@ -22,9 +28,14 @@ module.exports = {
             'Client-Routes': path.resolve(__dirname, 'src/client/Routes'),
             'Client-Store': path.resolve(__dirname, 'src/client/Store'),
             'Client-Utils': path.resolve(__dirname, 'src/client/Utils'),
+            'Root-Utils': path.resolve(__dirname, 'src/config'),
+            'Root-Config': path.resolve(__dirname, 'src/config'),
         },
         plugins: [
-            new ModuleScopePlugin(path.resolve(__dirname, 'src/client'), [])
+            new ModuleScopePlugin([
+                path.resolve(__dirname, 'src/client'),
+                path.resolve(__dirname, 'src/config')
+            ], [])
         ],
     },
     module: {
@@ -37,7 +48,7 @@ module.exports = {
                     options: {
                         presets: [
                             '@babel/preset-env',
-                            ['@babel/preset-react', { runtime: 'automatic' }],  // enable automatic JSX runtime
+                            ['@babel/preset-react', { runtime: 'automatic' }],
                             '@babel/preset-typescript'
                         ]
                     }

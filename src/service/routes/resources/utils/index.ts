@@ -1,0 +1,1 @@
+export { dataWrapper } from './dataWrapper';

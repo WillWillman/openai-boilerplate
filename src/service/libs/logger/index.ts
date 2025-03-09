@@ -1,1 +1,2 @@
-export { logger } from './logger';
+export { logger } from './lib';
+export * as ILogger from './interfaces'
