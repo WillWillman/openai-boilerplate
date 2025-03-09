@@ -22,10 +22,9 @@
     "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
-      "Client-Config": ["src/client/Config"],
+      "Client-Config": ["src/config/client-config.ts"],
       "Client-Routes": ["src/client/Routes"],
       "Client-Store": ["src/client/Store"],
-      "Client-Utils": ["src/client/Utils"],
     }
   },
   "exclude": ["node_modules"],

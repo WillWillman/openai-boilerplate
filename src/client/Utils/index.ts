@@ -1,1 +1,0 @@
-export { stringifyProps } from './stringifyProps';

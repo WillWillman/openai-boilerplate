@@ -1,5 +1,5 @@
 {
-  "watch": ["src/service"],
+  "watch": ["src/service", "src/config/service-config.ts", "src/config/resources", ".env"],
   "ext": "ts",
-  "exec": "ts-node src/service/index"
+  "exec": "yarn start"
 }

@@ -1,15 +1,19 @@
 import { connect } from 'react-redux';
-import { actions } from 'Client-Store';
-import { stringifyProps } from 'Client-Utils';
+import { useEffect } from 'react';
+import { getActions } from 'Client-Store';
+import { Props } from './interfaces';
+import { initData } from './utils';
+import { PrintProps } from './components';
 
-const HomeDumb = (props) =>
-  <pre>
-    {stringifyProps(props)}
-  </pre>
+const HomeDumb = (props: Props) => {
+  useEffect(initData(props), []);
+
+  return <>
+    <PrintProps {...props} />
+  </>;
+};
 
 export const Home = connect(
-  (data) => ({
-    data,
-    actions: actions(),
-  }),
+  data => ({ data }),
+  getActions,
 )(HomeDumb);

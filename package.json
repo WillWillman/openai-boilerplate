@@ -3,25 +3,28 @@
   "version": "1.0.0",
   "main": "./src/index.ts",
   "license": "MIT",
+  "author": {
+    "name": "willman.codes",
+    "email": "will@willman.codes"
+  },
+  "description": "A super simple boilerplate for OpenAI prototyping",
   "scripts": {
-    "start": "ts-node src/service/index",
+    "start": "ts-node -r dotenv/config src/service/index",
     "build": "webpack --config webpack.js",
-    "dev": "yarn build --watch & nodemon",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run build",
-    "openai:models": "ts-node ./scripts/openai-models.ts"
+    "dev": "yarn build --watch & nodemon"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.6.1",
+    "ajv": "^8.12.0",
     "express": "^4.21.0",
     "jsonrepair": "^3.8.1",
     "mongodb": "^6.9.0",
     "openai": "^4.77.0",
     "query-string": "^9.1.1",
+    "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^9.2.0",
-    "react-router-dom": "^6.14.1",
-    "react": "^18.2.0",
-    "redux-thunk": "^3.1.0",
-    "redux": "^5.0.1"
+    "react-router-dom": "^6.14.1"
   },
   "devDependencies": {
     "@babel/core": "^7.26.9",
@@ -33,17 +36,14 @@
     "@types/react": "^19.0.10",
     "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@typescript-eslint/parser": "^6.7.0",
-    "babel-core": "7.0.0-bridge.0",
     "babel-loader": "^10.0.0",
     "dotenv": "^8.2.0",
     "eslint": "^8.50.0",
     "nodemon": "^3.1.4",
     "react-dev-utils": "^12.0.1",
-    "ts-loader": "^9.5.2",
     "ts-node": "^10.9.1",
-    "typescript": "^5.8.2",
-    "webpack-cli": "^6.0.1",
-    "webpack-node-externals": "^1.7.2",
-    "webpack": "^5.98.0"
+    "typescript": "5.3.3",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1"
   }
 }

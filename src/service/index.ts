@@ -1,7 +1,7 @@
-import { config } from './config';
-import { server } from './server';
-import { cleanup, getLibs, sideEffect } from './utils';
+import { libs } from './libs';
+import { routes } from './routes';
+import { config } from '../config/service-config';
 
-getLibs(config)
-    .then(sideEffect(server(config.port)))
-    .then(libs => process.on('exit', () => cleanup(libs)));
+libs(config)
+  .then(libs => routes(libs, config).then(libs.server))
+  .catch(console.error);

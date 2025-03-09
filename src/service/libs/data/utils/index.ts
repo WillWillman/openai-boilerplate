@@ -1,0 +1,1 @@
+export { initCollection } from './initCollection';

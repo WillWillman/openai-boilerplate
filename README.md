@@ -8,24 +8,43 @@
 - Update the [.env](./.env) file in the root directory with the required environment variables.
   Example:
   ```
+  NODE_ENV='development'
   PORT=3000
-  DATA_URI=mongodb+srv://[user]:[password]@[cluster].[instance].mongodb.net
-  DATA_DB=your_database_name
-  DATA_RESOURCES='["resource1", "resource2"]'
 
+  ON_REQUEST_ENABLED='true'
+  ON_REQUEST_LOG_BODY='false'
+  ON_REQUEST_LOG_HEADERS='false'
+
+  ON_RESPONSE_ENABLED='false'
+  ON_RESPONSE_LOG_BODY='false'
+  ON_RESPONSE_LOG_HEADERS='false'
+
+  LOGGER_LEVELS='["*"]'
+
+  CLIENT_REACT_ROUTER='{"future":{"v7_startTransition":true,"v7_relativeSplatPath":true}}'
+  CLIENT_STORE_DEV_TOOLS='true'
+
+  RESOURCES='[{"name":"resource","schema":{"body": {"type": "object", "properties": {"id":{"type":"string"}}, "additionalProperties": false}, "query": {"type": "object", "properties": {"id":{"type":"string"}}, "additionalProperties": false}}}]'
+
+  DATA_URI='mongodb+srv://[user]:[password]@[cluster].[instance].mongodb.net'
   DATA_OPTIONS='{}'
-  OPENAI_API_KEY=your_openai_api_key
-  OPENAI_API_ORGANIZATION=your_openai_organization
-  OPENAI_DEFAULT_MODEL=gpt-4o
-  OPENAI_OPTIONS='{}'
+  DATA_DB='dafault'
+
+  OPENAI_API_KEY=''
+  OPENAI_API_ORGANIZATION='org-'
+  OPENAI_API_OPTIONS='{}'
   ```
-- Add additional configs:
-    - [Client Config file](./src/client/config.ts)
-        - Must add new env variables to [webpack](./webpack.js)
-    - [Server Config File](./src/service/config.ts)
+
 - Check in .env updates:
-    - start tracking .env `git update-index --no-skip-worktree .env`
-    - stop tracking again `git update-index --skip-worktree .env`
+  - start tracking .env `git update-index --no-skip-worktree .env`
+  - stop tracking again `git update-index --skip-worktree .env`
+
+- Add additional configs:
+    - [Server Config File](./src/config/server-config.ts)
+    - [Client Config file](./src/config/client-config.ts)
+        - Must add new env variables to [webpack](./webpack.js)
+        - Do not add sensitive info to the client-config.ts or resources directory files as they will be built using webpack into the bundle!
+
 
 ## 3. Install Dependencies
 - Run: `yarn`
@@ -37,15 +56,27 @@
 
 ## 5. Access the App
 - Once started, the server runs on [http://localhost:[port]](http://localhost:3000) (3000 by default)
+- The Home route
+    - Uses an initData function call in the useEffect to pull all data and make a call to the openApi endpoint
+    - The default component PrintProps will print out the props (store + actions) as json
 
-## 6. DATA_RESOURCES
-- Will create default CRUD routes as well as redux actions and reducers
-- There is a default `/` route that returns the [Home](./src/client/routes/Home/Home.tsx) component which can be used as an example route for prototyping (go [http://localhost:[port]](http://localhost:3000) to see the store thats generated printed out)
+# RESOURCES
+- Create default CRUD server routes as well as client redux actions and reducers.
+- Can be set in code by exporting from the [Resource Array](./src/config/resources/index.ts)
+  - Note: the resource named "resource" is just a mock and can be removed
+- Can be set by passing env variable
+- Each resource must contain
+  - name: name of resource
+    - used for collection name and endpoint (Server) and reducer name (Client)
+  - schema
+    - body: define the shape of the data
+    - query: define the query params that can be used to filter data
 
 ## New from Template Extension
 1. Install [extension](https://marketplace.visualstudio.com/items?itemName=PolymerMallard.new-from-template)
 1. Update or add Templates here: .vscode/templates
 1. Right click on directory where you want to add from template, select template, and fill out inputs
 
-ReactComponent:
-Generates a component connected with all the state and actions from store and prints out a hello world and with all the props (including store)
+# Templates
+1. ReactComponent:
+  - Generates a component connected with all the state and actions from store and prints out a hello world and with all the props
