@@ -18,6 +18,6 @@ export const getStore = (config: any) => {
         resources: resourceStore.actions,
         openai: openaiStore.actions,
       }),
-    })
+    }),
   };
 };

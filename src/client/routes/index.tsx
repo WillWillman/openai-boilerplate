@@ -6,4 +6,4 @@ export const Routes = [
     path: '/',
     Component: Home,
   },
-]
+];

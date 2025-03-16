@@ -15,7 +15,7 @@ export const getErrorClient = (_openai): Client => {
       list: () =>
         Promise.reject({
           message,
-        })
-    }
-  }
+        }),
+    },
+  };
 };

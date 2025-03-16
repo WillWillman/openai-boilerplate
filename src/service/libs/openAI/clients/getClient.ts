@@ -7,7 +7,7 @@ export const getClient = (openAI: OpenAI): Client => ({
       openAI
         .models
         .list()
-        .then(({ data }) => data)
+        .then(({ data }) => data),
   },
 
   chat: {
@@ -15,6 +15,6 @@ export const getClient = (openAI: OpenAI): Client => ({
       openAI
         .chat
         .completions
-        .create(config)
+        .create(config),
   },
-})
+});

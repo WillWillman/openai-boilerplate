@@ -11,7 +11,8 @@
   "scripts": {
     "start": "ts-node -r dotenv/config src/service/index",
     "build": "webpack --config webpack.js",
-    "dev": "yarn build --watch & nodemon"
+    "dev": "yarn build --watch & nodemon",
+    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.1",

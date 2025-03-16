@@ -24,8 +24,8 @@ const MockChatCompletion = {
       content: [
         {
           type: 'text',
-          text: `You are an assistant: just used to ping`,
-        }
+          text: 'You are an assistant: just used to ping',
+        },
       ],
     },
     {
@@ -33,8 +33,8 @@ const MockChatCompletion = {
       content: [
         {
           type: 'text',
-          text: `Prompt Schema: { "prompt": { "type": "string" } }`,
-        }
+          text: 'Prompt Schema: { "prompt": { "type": "string" } }',
+        },
       ],
     },
     {
@@ -42,8 +42,8 @@ const MockChatCompletion = {
       content: [
         {
           type: 'text',
-          text: `Response Schema: Prompt Schema: { "prompt": { "type": "string" }, "response": { "type": "string" } }`,
-        }
+          text: 'Response Schema: Prompt Schema: { "prompt": { "type": "string" }, "response": { "type": "string" } }',
+        },
       ],
     },
     {
@@ -52,7 +52,7 @@ const MockChatCompletion = {
         {
           type: 'text',
           text: 'Only respond with structured stringified compact JSON. no whitespace, no newlines, nothing other than the json.',
-        }
+        },
       ],
     },
     {
@@ -61,7 +61,7 @@ const MockChatCompletion = {
         {
           type: 'text',
           text: 'ping!',
-        }
+        },
       ],
     },
   ],

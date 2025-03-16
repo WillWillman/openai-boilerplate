@@ -22,7 +22,7 @@ export const libs = async (config) => {
     server: server(config.server, loggerClient),
     openAI: openAI(config.openAI),
     data: data(config.data),
-  }
+  };
 };
 
 export {
@@ -30,4 +30,4 @@ export {
   ILogger,
   IServer,
   IOpenAI,
-}
+};

@@ -18,7 +18,7 @@ export const traverse = (checker, worker) => <T>(obj: T): T => {
         }), {}) as T;
     }
 
-    return value
-  }
+    return value;
+  };
   return recursively(obj);
 };

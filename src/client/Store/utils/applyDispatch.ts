@@ -15,5 +15,5 @@ type ApplyDispatchToAll<T> = {
 export const applyDispatch = (dispatch: any) => <T>(actions: T): ApplyDispatchToAll<T> =>
   traverse(
     v => typeof v === 'function',
-    fn => fn(dispatch)
+    fn => fn(dispatch),
   )(actions) as ApplyDispatchToAll<T>;

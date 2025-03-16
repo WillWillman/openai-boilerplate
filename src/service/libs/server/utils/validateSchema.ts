@@ -24,5 +24,5 @@ export const validateSchema = schema => {
     return validate.errors
       ? res.status(400).json(validate.errors)
       : next();
-  }
+  };
 };
