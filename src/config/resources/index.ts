@@ -1,5 +1,5 @@
-import { resource } from './resource';
+import { rules } from './rules';
 
 export const resources = [
-  resource,
+  rules,
 ];
