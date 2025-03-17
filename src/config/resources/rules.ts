@@ -22,6 +22,7 @@ const analysis = {
 
 const properties = {
   game: string,
+  rulesText: string,
   state: array(object({
     title: string,
     what: string,

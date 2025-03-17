@@ -37,7 +37,6 @@ const responseSchema = {
     })),
   })),
   winning: array(object(analysis)),
-  feedback: array(object(analysis)),
 };
 
 export const defaultPrompt = {
@@ -48,39 +47,23 @@ export const defaultPrompt = {
       content: [
         {
           type: 'text',
-          text: `
-          You are an assistant: Tasked with generating an AI friendly ruleset based on a schema.
-          This will be saved into a DB and will be used in order to add an AI player to board games.
-          Player will select a choice, provide game state, and the AI will respond with a choice.
-          Player will then provide feedback on the AI's choice which will be stored in the db for future training.
-          `,
+          text: 'You are an assistant',
         },
-      ],
-    },
-    {
-      role: 'developer',
-      content: [
         {
           type: 'text',
-          text: 'Prompt Schema: { "rules": { "type": "string" } }',
+          text: 'Tasked with generating an AI friendly ruleset based on provided JSON schema.',
         },
-      ],
-    },
-    {
-      role: 'developer',
-      content: [
         {
           type: 'text',
-          text: 'Response Schema: Prompt Schema: ' + responseSchema,
+          text: responseSchema,
         },
-      ],
-    },
-    {
-      role: 'developer',
-      content: [
         {
           type: 'text',
           text: 'Only respond with structured stringified compact JSON. no whitespace, no newlines, nothing other than the json.',
+        },
+        {
+          type: 'text',
+          text: 'This will be saved into a DB and will be used in order to add an AI player to board games. Player will select a choice, provide game state, and the AI will respond with a choice. Player will then provide feedback on the AI choice which will be stored in the db for future training.',
         },
       ],
     },
@@ -89,7 +72,7 @@ export const defaultPrompt = {
       content: [
         {
           type: 'text',
-          text: 'Add Rules Here!',
+          text: 'Game Name Here',
         },
       ],
     },
