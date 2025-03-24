@@ -55,7 +55,7 @@ export const defaultPrompt = {
         },
         {
           type: 'text',
-          text: responseSchema,
+          text: JSON.stringify(responseSchema),
         },
         {
           type: 'text',

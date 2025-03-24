@@ -4,9 +4,7 @@ import { RequestHandler } from 'express';
 
 const readFile = (filePath) => {
   try {
-    console.log('filePath', filePath);
     const file = join(process.cwd(), 'src', 'public', filePath);
-    console.log('file', file);
     return readFileSync(file).toString();
   } catch (err) {
     return null;

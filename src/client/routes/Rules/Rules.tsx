@@ -74,17 +74,50 @@ const JsonEditor = ({ initialValue, onChange }) => {
   );
 };
 
+const SendToApiButton = ({ onClick, disabled }) => (
+  <button
+    onClick={onClick}
+    disabled={disabled}
+    style={{
+      marginTop: '10px',
+      padding: '8px 16px',
+      backgroundColor: disabled ? '#ccc' : '#007bff',
+      color: 'white',
+      border: 'none',
+      borderRadius: '4px'
+    }}
+  >
+    Send to Chat Completion API
+  </button>
+);
+
 const PageHeader = () => (
   <h1>Rules JSON Editor</h1>
 );
 
 const RulesDumb = (props: Props) => {
   const [jsonValue, setJsonValue] = useState(defaultPrompt);
+  const [hasError, setHasError] = useState(false);
+
+  const handleJsonChange = (value) => {
+    setJsonValue(value);
+    setHasError(false);
+  };
+
+  const handleSendToApi = () => {
+    if (!hasError && props.actions?.openai?.chatCompletion) {
+      props.actions.openai.chatCompletion(jsonValue);
+    }
+  };
 
   return (
     <div>
       <PageHeader />
-      <JsonEditor initialValue={jsonValue} onChange={setJsonValue} />
+      <JsonEditor initialValue={jsonValue} onChange={handleJsonChange} />
+      <SendToApiButton
+        onClick={handleSendToApi}
+        disabled={hasError}
+      />
     </div>
   );
 };
