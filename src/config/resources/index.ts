@@ -1,5 +1,5 @@
 import { rules } from './rules';
 
-export const resources = [
-  rules,
-];
+export const resources = {
+  rules
+};
