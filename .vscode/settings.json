@@ -4,6 +4,7 @@
         "frostfangs",
         "jsonrepair",
         "logprobs",
+        "MCTS",
         "postbuild",
         "willman"
     ]

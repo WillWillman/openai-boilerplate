@@ -1,3 +1,4 @@
+
 const string = { type: 'string' };
 const number = { type: 'number' };
 const array = (items) => ({ type: 'array', items });
@@ -13,7 +14,7 @@ const object = ({
   required,
 });
 
-const rulesSchema = {
+export const gameStateSchema = {
   definitions: {
     HexCoordinate: object({
       required: ['q', 'r'],
@@ -54,33 +55,66 @@ const rulesSchema = {
       victoryPoints: number,
     }),
     GameState: object({
-      required: ['gameId', 'turnNumber', 'activePlayerId', 'board', 'players'],
-      gameId: string,
+      required: ['turnNumber', 'activePlayerId', 'board', 'players'],
       turnNumber: number,
       activePlayerId: string,
       board: { $ref: '#/definitions/BoardState' },
       players: array({ $ref: '#/definitions/PlayerState' }),
-    }),
-    TrainingParams: object({
-      required: ['simulationCount', 'explorationConstant'],
-      simulationCount: number,
-      explorationConstant: number,
-    }),
+    })
   },
   properties: {
+    id: string,
     name: string,
     gameState: { $ref: '#/definitions/GameState' },
-    trainingParams: { $ref: '#/definitions/TrainingParams' },
   },
-  required: ['gameState', 'trainingParams']
+  required: ['name', 'gameState']
 };
 
-export const rules = ({
-  name: 'rules',
-  schema: {
-    body: rulesSchema,
-    query: object({
-      name: string,
-    }),
+export const trainSchema = {
+  body: {
+    type: 'object',
+    properties: {
+      type: 'object',
+      properties: {
+        gameStateId: { type: 'string' },
+        simulationCount: { type: 'number' },
+        explorationConstant: { type: 'number' },
+        extensionActions: { type: 'array', items: { type: 'string' } },
+        maxDepth: { type: 'number' },
+      },
+      required: ['gameId', 'gameState', 'simulationCount', 'explorationConstant', 'maxDepth'],
+    },
   },
-});
+}
+
+export const nodesSchema = {
+  type: 'object',
+  properties: {
+    id: { type: 'string' },
+    gameId: { type: 'string' },
+    state: { type: 'object' },
+    action: { type: 'string' },
+    parent: { type: 'string' },
+    children: { type: 'array', items: { type: 'string' } },
+    visits: { type: 'number' },
+    value: { type: 'number' }
+  },
+  required: ['id', 'state', 'action', 'parent', 'children', 'visits', 'value']
+};
+
+export const trainingResultsSchema = {
+  type: 'object',
+  properties: {
+    id: { type: 'string' },
+    gameId: { type: 'string' },
+    simulationIndex: { type: 'number' },
+    reward: { type: 'number' }
+  },
+  required: ['simulationIndex', 'reward']
+};
+
+export const listSchema = {
+  query: {
+    gameId: { type: 'string' },
+  },
+};

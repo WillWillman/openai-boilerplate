@@ -2,7 +2,7 @@ import { resources } from './resources';
 import { safeParse } from './safeParse';
 
 const {
-  DATA_DB = 'data',
+  DATA_DB_NAME = 'data',
   DATA_OPTIONS = '{}',
   DATA_URI = 'mongodb://localhost:27017',
   LOGGER_LEVELS = '["*"]',
@@ -40,7 +40,7 @@ export const config = {
   },
   data: {
     uri: DATA_URI,
-    db: DATA_DB,
+    dbName: DATA_DB_NAME,
     resources: safeParse(RESOURCES),
     options: safeParse(DATA_OPTIONS),
   },
