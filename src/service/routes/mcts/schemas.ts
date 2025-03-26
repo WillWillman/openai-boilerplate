@@ -1,4 +1,3 @@
-
 const string = { type: 'string' };
 const number = { type: 'number' };
 const array = (items) => ({ type: 'array', items });
@@ -25,7 +24,7 @@ export const gameStateSchema = {
       required: ['coordinate', 'resourceType'],
       coordinate: { $ref: '#/definitions/HexCoordinate' },
       resourceType: {
-        type: 'string',
+        ...string,
         enum: ['brick', 'lumber', 'wool', 'grain', 'ore', 'desert', 'frostfangs']
       },
       numberToken: number,
@@ -48,7 +47,7 @@ export const gameStateSchema = {
       playerId: string,
       playerName: string,
       color: {
-        type: 'string',
+        ...string,
         enum: ['red', 'blue', 'white', 'orange']
       },
       resources: { $ref: '#/definitions/PlayerResources' },
@@ -70,51 +69,17 @@ export const gameStateSchema = {
   required: ['name', 'gameState']
 };
 
-export const trainSchema = {
-  body: {
-    type: 'object',
-    properties: {
-      type: 'object',
-      properties: {
-        gameStateId: { type: 'string' },
-        simulationCount: { type: 'number' },
-        explorationConstant: { type: 'number' },
-        extensionActions: { type: 'array', items: { type: 'string' } },
-        maxDepth: { type: 'number' },
-      },
-      required: ['gameId', 'gameState', 'simulationCount', 'explorationConstant', 'maxDepth'],
-    },
-  },
-}
-
 export const nodesSchema = {
   type: 'object',
   properties: {
-    id: { type: 'string' },
-    gameId: { type: 'string' },
-    state: { type: 'object' },
-    action: { type: 'string' },
-    parent: { type: 'string' },
-    children: { type: 'array', items: { type: 'string' } },
-    visits: { type: 'number' },
-    value: { type: 'number' }
+    id: string,
+    gameId: string,
+    state: object({}),
+    action: string,
+    parent: string,
+    children: array(string),
+    visits: number,
+    value: number,
   },
   required: ['id', 'state', 'action', 'parent', 'children', 'visits', 'value']
-};
-
-export const trainingResultsSchema = {
-  type: 'object',
-  properties: {
-    id: { type: 'string' },
-    gameId: { type: 'string' },
-    simulationIndex: { type: 'number' },
-    reward: { type: 'number' }
-  },
-  required: ['simulationIndex', 'reward']
-};
-
-export const listSchema = {
-  query: {
-    gameId: { type: 'string' },
-  },
 };

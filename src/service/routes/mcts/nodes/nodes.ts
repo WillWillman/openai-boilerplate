@@ -1,10 +1,13 @@
-import { IDao, IServer } from './interfaces';
-import { listSchema } from './schemas';
+import { IDao, IServer } from '../interfaces';
 
-export const listNodes = (dao: IDao): IServer.Route => ({
+export const list = (dao: IDao): IServer.Route => ({
   path: '/api/mcts/nodes',
   method: IServer.Method.GET,
-  schema: listSchema,
+  schema: {
+    query: {
+      gameId: { type: 'string' },
+    },
+  },
 
   handler: async (req, res, next) => {
     res

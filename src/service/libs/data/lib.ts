@@ -27,7 +27,7 @@ export const data: Lib = (config) => async (collectionName, schema, dbName?) => 
 
         create: async (doc) => collection
           .insertOne(remove_id(doc))
-          .then(() => doc),
+          .then(() => remove_id(doc)),
 
         read: async (id) => collection
           .findOne({ id })
@@ -40,15 +40,15 @@ export const data: Lib = (config) => async (collectionName, schema, dbName?) => 
 
         update: async (doc) => collection
           .replaceOne({ id: doc.id }, remove_id(doc))
-          .then(() => doc),
+          .then(() => remove_id(doc)),
 
         removeOne: async (doc) => collection
           .deleteOne(doc)
-          .then(() => doc),
+          .then(() => remove_id(doc)),
 
         upsert: async (doc) => collection
           .replaceOne({ id: doc.id }, remove_id(doc), { upsert: true })
-          .then(() => doc),
+          .then(() => remove_id(doc)),
       };
     });
 };

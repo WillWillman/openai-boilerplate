@@ -1,8 +1,8 @@
 import { randomUUID } from 'crypto';
-import { gameStateSchema } from './schemas';
-import { IDao, IServer } from './interfaces';
+import { gameStateSchema } from '../schemas';
+import { IDao, IServer } from '../interfaces';
 
-export const createGameState = (dao: IDao): IServer.Route => ({
+export const create = (dao: IDao): IServer.Route => ({
   path: '/api/mcts/gameState',
   method: IServer.Method.POST,
   schema: {

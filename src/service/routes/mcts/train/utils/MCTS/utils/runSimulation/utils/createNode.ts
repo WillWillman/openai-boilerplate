@@ -1,12 +1,17 @@
 import { randomUUID } from 'crypto';
 
-export const createNode = (gameId, state, action, parent = null) => ({
+export const createNode = ({
+  gameId,
+  gameState,
+  action = null,
+  parent = null,
+}) => ({
   id: randomUUID(),
   gameId,
-  state,
+  gameState,
   action,
   parent,
   children: [],
   visits: 0,
-  value: 0
+  value: 0,
 });

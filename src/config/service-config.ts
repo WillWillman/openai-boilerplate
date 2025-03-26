@@ -1,5 +1,6 @@
 import { resources } from './resources';
 import { safeParse } from './safeParse';
+import { actions } from './actions';
 
 const {
   DATA_DB_NAME = 'data',
@@ -49,4 +50,7 @@ export const config = {
     organization: OPENAI_API_ORGANIZATION,
     ...safeParse(OPENAI_API_OPTIONS),
   },
+  MCTS: {
+    actions,
+  }
 };
