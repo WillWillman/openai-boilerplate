@@ -3,13 +3,13 @@ import { safeParse } from './safeParse';
 
 const {
   CLIENT_STORE_DEV_TOOLS = false,
-  REACT_ROUTER = {},
+  CLIENT_REACT_ROUTER = {},
   RESOURCES = resources,
 } = process.env;
 
 // IMPORTANT!! Do not add sensitive info, this file is built using webpack into the bundle
 export const config = {
-  reactRouter: safeParse(REACT_ROUTER),
+  reactRouter: safeParse(CLIENT_REACT_ROUTER),
   data: {
     resources: safeParse(RESOURCES),
   },

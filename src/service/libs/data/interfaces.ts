@@ -13,11 +13,11 @@ export type Methods = {
   removeOne: (doc: Record<string, any>) => Promise<any>;
 };
 
-export type Client = (collectionName: string, schema?: Record<string, any>) => Promise<Methods>;
+export type Client = (collectionName: string, schema?: Record<string, any>, dnName?: string) => Promise<Methods>;
 
 export type Config = {
   uri: string;
-  db: string;
+  dbName: string;
   resources: Record<string, any>[];
   options: MongoOptions;
 }

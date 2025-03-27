@@ -1,8 +1,8 @@
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectId } from 'mongodb';
 import { initCollection } from './utils';
 import { Lib } from './interfaces';
 
-export const data: Lib = (config) => async (collectionName, schema) => {
+export const data: Lib = (config) => async (collectionName, schema, dbName?) => {
   const client = new MongoClient(config.uri, {
     ...config.options,
     forceServerObjectId: false,
@@ -10,8 +10,11 @@ export const data: Lib = (config) => async (collectionName, schema) => {
 
   return client.connect()
     .then(async () => {
-      const collection = await initCollection(client, config, collectionName);
-      const remove_id = ({ _id, ...rest }: any) => rest;
+      const collection = await initCollection(client, config, collectionName, dbName);
+      const remove_id = (result) => {
+        delete result?._id;
+        return result;
+      };
 
       return {
         schema,
@@ -24,7 +27,7 @@ export const data: Lib = (config) => async (collectionName, schema) => {
 
         create: async (doc) => collection
           .insertOne(remove_id(doc))
-          .then(() => doc),
+          .then(() => remove_id(doc)),
 
         read: async (id) => collection
           .findOne({ id })
@@ -37,15 +40,15 @@ export const data: Lib = (config) => async (collectionName, schema) => {
 
         update: async (doc) => collection
           .replaceOne({ id: doc.id }, remove_id(doc))
-          .then(() => doc),
+          .then(() => remove_id(doc)),
 
         removeOne: async (doc) => collection
           .deleteOne(doc)
-          .then(() => doc),
+          .then(() => remove_id(doc)),
 
         upsert: async (doc) => collection
           .replaceOne({ id: doc.id }, remove_id(doc), { upsert: true })
-          .then(() => doc),
+          .then(() => remove_id(doc)),
       };
     });
 };
