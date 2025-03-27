@@ -1,10 +1,10 @@
-import { applyAction, getAvgScore, getRandomMapItem, isTerminal } from './utils';
+import { applyAction, getAvgScore, isGameOver, isTerminal } from './utils';
 
 interface RewardParams {
   gameState: any;
-  actions: Map<string, <T>(state: T) => T>;
   depth: number;
   maxDepth: number;
+  getValidAction: (config: RewardParams) => <T>(state: T) => { name: string; call: T };
 }
 
 interface RewardResult {
@@ -12,17 +12,17 @@ interface RewardResult {
 }
 
 export const reward = <T extends RewardParams>(config: T): T & RewardResult => {
-  if (isTerminal(config))
+  if (isTerminal(config) || isGameOver(config))
     return {
       ...config,
       rewarded: getAvgScore(config.gameState.players)
     };
 
-  const randomAction = getRandomMapItem(config.actions);
+  const action = config.getValidAction(config);
 
   return reward({
     ...config,
-    gameState: applyAction(config.gameState, randomAction.call),
+    gameState: applyAction(config.gameState, action.call),
     depth: config.depth + 1,
   });
 };

@@ -1,4 +1,4 @@
-import { applyAction, getRandomMapItem, isTerminal } from './utils';
+import { applyAction, isGameOver, isTerminal } from './utils';
 import { createNode } from './createNode';
 
 interface ExpandParams {
@@ -6,8 +6,8 @@ interface ExpandParams {
   gameState: any;
   depth: number;
   maxDepth: number;
-  actions: Map<string, <T>(state: T) => T>;
   gameId: string;
+  getValidAction: (config: ExpandParams) => <T>(state: T) => { name: string; call: T };
 }
 
 interface ExpandResult {
@@ -17,14 +17,14 @@ interface ExpandResult {
 }
 
 export const expand = (config: ExpandParams): ExpandResult => {
-  if (isTerminal(config)) return config;
+  if (isTerminal(config) || isGameOver(config)) return config;
 
-  const randomAction = getRandomMapItem(config.actions);
-  const gameState = applyAction(config.gameState, randomAction.call);
+  const action = config.getValidAction(config);
+  const gameState = applyAction(config.gameState, action.call);
 
   const node = createNode({
     ...config,
-    action: randomAction.name,
+    action: action.name,
     gameState,
   });
 

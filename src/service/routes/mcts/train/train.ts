@@ -1,8 +1,10 @@
 import { IDao, IServer } from '../interfaces';
-import { trainSchema } from './schema';
 import { collectNodes, MCTS } from './utils';
 
-export const train = (dao: IDao, config): IServer.Route => ({
+import { trainSchema } from './schema';
+import { getValidAction } from './getValidAction';
+
+export const train = (dao: IDao): IServer.Route => ({
   path: '/api/mcts/train',
   method: IServer.Method.POST,
   schema: trainSchema,
@@ -13,7 +15,7 @@ export const train = (dao: IDao, config): IServer.Route => ({
     const nodes = MCTS({
       ...gameState,
       ...req.body,
-      actions: config.actions,
+      getValidAction,
     })
       .flatMap(collectNodes)
       .map(dao.nodes.create)
