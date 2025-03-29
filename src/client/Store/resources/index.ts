@@ -7,9 +7,8 @@ export type GetStore = (config) => {
 };
 
 export const getStore: GetStore = (config) =>
-  config
-    .data
-    .resources
+  Object
+    .values<{ name: string }>(config.data.resources)
     .reduce((acc, { name }) => {
       acc.actions[name] = getActions(name);
       acc.reducers[name] = getReducer(name);

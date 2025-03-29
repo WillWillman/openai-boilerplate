@@ -1,5 +1,5 @@
 import { resource } from './resource';
 
-export const resources = [
+export const resources = {
   resource,
-];
+};

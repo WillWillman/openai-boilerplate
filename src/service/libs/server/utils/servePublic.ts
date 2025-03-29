@@ -4,24 +4,18 @@ import { RequestHandler } from 'express';
 
 const readFile = (filePath) => {
   try {
-    return readFileSync(filePath);
+    const file = join(process.cwd(), 'src', 'public', filePath);
+    return readFileSync(file).toString();
   } catch (err) {
     return null;
   }
 };
 
 export const servePublic: RequestHandler = (req, res, next) => {
-  const file = req.path.replace(/^\/$/, 'index.html');
 
-  const filePath = join(process.cwd(), 'src', 'public', file);
   if (req.path.endsWith('.js')) res.setHeader('Content-Type', 'application/javascript');
 
-  const result = readFile(filePath);
-  if (result) {
-    res.statusCode = 200;
-    return res.end(result);
-  }
-  res.statusCode = 404;
-  res.json({ error: 'Not found', path: req.path, file, headers: req.headers });
-  next();
+  const result = readFile(req.path) || readFile('index.html');
+  res.statusCode = 200;
+  res.end(result);
 };
