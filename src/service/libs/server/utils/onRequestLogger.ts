@@ -14,8 +14,8 @@ export const onRequestLogger = (logger: ILogger.Client, config) => (req, _res, n
     url: req.url,
     requestStartTime: req.requestStartTime,
     correlationId: req.correlationId,
-    ...config.onRequestLogger.logHeaders && { headers: req.headers },
-    ...config.onRequestLogger.logBody && { body: req.body },
+    ...logHeaders && { headers: req.headers },
+    ...logBody && { body: req.body },
   });
   next();
 };

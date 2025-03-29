@@ -10,6 +10,8 @@ export type Client = {
   fatal: Logger,
 };
 
-export type Lib = (config: {
+export type Config = {
   levels: LogLevels[];
-}) => Client;
+};
+
+export type Lib = (config: Config) => Client;

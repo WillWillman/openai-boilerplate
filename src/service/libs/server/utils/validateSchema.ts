@@ -12,14 +12,12 @@ export const validateSchema = schema => {
       type: 'object',
       properties: {
         ...schema.query && { query: schema.query },
-        ...schema.payload && { payload: schema.payload },
+        ...schema.body && { body: schema.body },
       },
+      additionalProperties: true,
     });
 
-    validate({
-      payload: req.body,
-      query: req.query,
-    });
+    validate(req);
 
     return validate.errors
       ? res.status(400).json(validate.errors)

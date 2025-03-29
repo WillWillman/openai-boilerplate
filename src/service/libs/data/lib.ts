@@ -1,4 +1,4 @@
-import { MongoClient, ObjectId } from 'mongodb';
+import { MongoClient } from 'mongodb';
 import { initCollection } from './utils';
 import { Lib } from './interfaces';
 
@@ -17,6 +17,8 @@ export const data: Lib = (config) => async (collectionName, schema, dbName?) => 
       };
 
       return {
+        dbName,
+        collectionName,
         schema,
         config,
         close: async () => client

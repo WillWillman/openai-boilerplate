@@ -14,15 +14,29 @@ import {
   openAI,
   IOpenAI,
 } from './openAI';
+import {
+  resource,
+  IResource,
+} from './resource';
 
-export const libs = async (config) => {
+import { Lib, ILibs } from './interfaces';
+
+export const libs: Lib = async (config) => {
+  const dataClient = data(config.data);
   const loggerClient = logger(config.logger);
-  return {
+  const openAIClient = openAI(config.openAI);
+  const resourceClient = await resource(config.resource, dataClient);
+  const serverClient = server(config.server, loggerClient);
+
+  const _libs = {
+    data: dataClient,
     logger: loggerClient,
-    server: server(config.server, loggerClient),
-    openAI: openAI(config.openAI),
-    data: data(config.data),
+    openAI: openAIClient,
+    resource: resourceClient,
+    server: serverClient,
   };
+
+  return _libs;
 };
 
 export {
@@ -30,4 +44,6 @@ export {
   ILogger,
   IServer,
   IOpenAI,
+  IResource,
+  ILibs,
 };

@@ -1,22 +1,20 @@
-const properties = {
-  name: { type: 'string' },
-  id: { type: 'string' },
-};
+import { object, string } from './schemaHelpers';
 
 export const resource = {
   name: 'resource',
+  dbName: 'defaultResources',
   schema: {
-    body: {
-      type: 'object',
-      properties,
+    body: object({
+      properties: {
+        name: string,
+        id: string,
+      },
       required: ['name'],
-      additionalProperties: false,
-    },
-    query: {
-      type: 'object',
-      properties,
-      required: [],
-      additionalProperties: false,
-    },
+    }),
+    query: object({
+      properties: {
+        name: string,
+      },
+    }),
   },
 };

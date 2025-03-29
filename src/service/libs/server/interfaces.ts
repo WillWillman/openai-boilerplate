@@ -31,8 +31,15 @@ export type Config = {
   port: number;
   env: string;
   onRequestLogger: {
-    logData: boolean;
-  };
+    enabled: boolean,
+    logBody: boolean,
+    logHeaders: boolean,
+  },
+  onResponseLogger: {
+    enabled: boolean,
+    logBody: boolean,
+    logHeaders: boolean,
+  },
 };
 export type Client = (routes: Route[]) => ExpressWrapper;
 export type Lib = (config: { port: number }, logger: ILogger.Client) => Client;

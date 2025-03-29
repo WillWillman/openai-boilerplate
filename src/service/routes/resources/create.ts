@@ -1,13 +1,13 @@
 import { randomUUID } from 'crypto';
 import { IServer } from '../../libs';
-import { IDataWrapper } from './utils/dataWrapper';
+import { ILibs } from '../../libs';
 
-export const create = (resources: Record<string, IDataWrapper.Client>): IServer.Route[] =>
+export const create = (libs: ILibs.Client): IServer.Route[] =>
   Object
-    .entries(resources)
+    .entries(libs.resource)
     .filter(([_resource, data]) => data.create)
     .map(([resource, data]) => ({
-      path: `/api/resources/${resource}`,
+      path: `/api/${data.dbName}/${resource}`,
       method: IServer.Method.POST,
 
       schema: {

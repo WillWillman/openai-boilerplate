@@ -1,1 +1,0 @@
-export { dataWrapper } from './dataWrapper';

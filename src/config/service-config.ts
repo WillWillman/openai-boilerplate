@@ -41,12 +41,14 @@ export const config = {
   data: {
     uri: DATA_URI,
     dbName: DATA_DB_NAME,
-    resources: safeParse(RESOURCES),
     options: safeParse(DATA_OPTIONS),
   },
   openAI: {
     apiKey: OPENAI_API_KEY,
     organization: OPENAI_API_ORGANIZATION,
     ...safeParse(OPENAI_API_OPTIONS),
-  }
+  },
+  resource: {
+    resources: safeParse(RESOURCES),
+  },
 };

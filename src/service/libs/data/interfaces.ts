@@ -1,6 +1,8 @@
 import { MongoOptions } from 'mongodb';
 
 export type Methods = {
+  dbName: string;
+  collectionName: string;
   schema: Record<string, any>;
   config: Record<string, any>;
   close: () => Promise<void>;
@@ -18,7 +20,6 @@ export type Client = (collectionName: string, schema?: Record<string, any>, dnNa
 export type Config = {
   uri: string;
   dbName: string;
-  resources: Record<string, any>[];
   options: MongoOptions;
 }
 
